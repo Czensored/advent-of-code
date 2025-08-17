@@ -6,6 +6,7 @@ pub fn part_one(input: &str) -> Option<u64> {
     let grid = parse_input(input);
     let rows = grid.len();
     let cols = grid[0].len();
+
     let positions = get_antenna_positions(&grid);
 
     let mut antinode_pos = HashSet::new();
