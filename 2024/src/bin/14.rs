@@ -137,32 +137,20 @@ impl Room {
     }
 
     fn has_vertical_line(&self, len: usize) -> bool {
-        if len == 0 { return true; }
-        let (_, h) = self.dimensions;
-        let need = len as u64;
+        if len == 0 {
+            return true;
+        }
 
-        // Use a set for O(1) membership checks.
+        let len_u64 = len as u64;
+        let (_, h) = self.dimensions;
+
+        // O(1) membership checks
         let positions: HashSet<(u64, u64)> = self.robots.iter().map(|r| r.position).collect();
 
-        for &(x, y) in &positions {
-            // Must fit within the top/bottom without wrapping.
-            if y + (need - 1) >= h {
-                continue;
-            }
-
-            // We already know (x, y) is occupied; check y+1 .. y+need-1
-            let mut ok = true;
-            for dy in 1..need {
-                if !positions.contains(&(x, y + dy)) {
-                    ok = false;
-                    break;
-                }
-            }
-            if ok {
-                return true;
-            }
-        }
-        false
+        positions.iter().any(|&(x, y)| {
+            // fits without wrapping and all cells below are present
+            y + len_u64 - 1 < h && (1..len_u64).all(|dy| positions.contains(&(x, y + dy)))
+        })
     }
 }
 
