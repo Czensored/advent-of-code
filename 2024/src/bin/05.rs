@@ -68,7 +68,7 @@ fn parse_input(input: &str) -> (HashMap<u64, Vec<u64>>, Vec<Vec<u64>>) {
 fn is_valid_update(rules_map: &HashMap<u64, Vec<u64>>, update: &Vec<u64>) -> bool {
     let mut pages = HashSet::new();
     for num in update {
-        if let Some(before_rules) = rules_map.get(&num) {
+        if let Some(before_rules) = rules_map.get(num) {
             for i in before_rules {
                 if pages.contains(i) {
                     return false;
@@ -77,7 +77,8 @@ fn is_valid_update(rules_map: &HashMap<u64, Vec<u64>>, update: &Vec<u64>) -> boo
         }
         pages.insert(*num);
     }
-    return true;
+
+    true
 }
 
 fn fix_update(rules_map: &HashMap<u64, Vec<u64>>, update: &mut Vec<u64>) {

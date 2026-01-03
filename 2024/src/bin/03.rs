@@ -24,12 +24,10 @@ pub fn part_two(input: &str) -> Option<u64> {
             enabled = true;
         } else if cap.name("dont").is_some() {
             enabled = false;
-        } else if let Some(_) = cap.name("mul") {
-            if enabled {
-                let x: u64 = cap.get(2)?.as_str().parse().ok()?;
-                let y: u64 = cap.get(3)?.as_str().parse().ok()?;
-                sum += x * y;
-            }
+        } else if cap.name("mul").is_some() && enabled {
+            let x: u64 = cap.get(2)?.as_str().parse().ok()?;
+            let y: u64 = cap.get(3)?.as_str().parse().ok()?;
+            sum += x * y;
         }
     }
 

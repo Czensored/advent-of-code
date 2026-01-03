@@ -18,10 +18,10 @@ pub fn part_two(input: &str) -> Option<u64> {
     let mut sum = 0;
 
     'reports: for report in input {
-        if is_valid_sequence(&report) {
-            sum += 1;
-            continue;
-        }
+        // if is_valid_sequence(&report) {
+        //     sum += 1;
+        //     continue;
+        // }
 
         for i in 0..report.len() {
             let mut mini_report = report.to_vec();

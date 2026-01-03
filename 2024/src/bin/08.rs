@@ -11,7 +11,7 @@ pub fn part_one(input: &str) -> Option<u64> {
 
     let mut antinode_pos = HashSet::new();
 
-    for (_, pos_list) in &positions {
+    for pos_list in positions.values() {
         if pos_list.len() < 2 {
             continue;
         }
@@ -53,7 +53,7 @@ pub fn part_two(input: &str) -> Option<u64> {
 
     let mut antinode_pos = HashSet::new();
 
-    for (_, pos_list) in &positions {
+    for pos_list in positions.values() {
         if pos_list.len() < 2 {
             continue;
         }

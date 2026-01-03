@@ -95,7 +95,7 @@ fn get_initial_state(input: &[u8]) -> Vec<Option<usize>> {
         .enumerate()
         .flat_map(|(ind, &num)| {
             let value = if ind % 2 == 0 { Some(ind / 2) } else { None };
-            std::iter::repeat(value).take(num as usize)
+            std::iter::repeat_n(value, num as usize)
         })
         .collect()
 }

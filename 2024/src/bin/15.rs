@@ -107,14 +107,11 @@ fn update_grid_part_one(grid: &mut [Vec<char>], robot: &mut (usize, usize), ch: 
     let nx = (rx as isize + dx) as usize;
     let ny = (ry as isize + dy) as usize;
 
-    if grid[nx][ny] == '#' {
-        return;
-    } else if grid[nx][ny] == '.' {
+    if grid[nx][ny] == '.' {
         grid[nx][ny] = '@';
         *robot = (nx, ny);
         grid[rx][ry] = '.';
-        return;
-    } else {
+    } else if grid[nx][ny] != '#' {
         let mut counter = 1;
         loop {
             let nnx = (rx as isize + dx * counter) as usize;
@@ -144,7 +141,6 @@ fn update_grid_part_two(grid: &mut [Vec<char>], robot: &mut (usize, usize), ch: 
     };
 
     let (rx, ry) = *robot;
-
 }
 
 #[cfg(test)]
